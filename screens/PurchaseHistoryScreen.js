@@ -21,8 +21,10 @@ import {
   SvgBackArrow,
 } from "../components/Svg";
 import PurchaseHistoryListBox from "../components/PurchaseHistoryListBox";
+import PurchaseHistoryListBoxRight from "../components/PurchaseHistoryListBoxRight";
 
 const PurchaseHistoryScreen = ({ navigation }) => {
+  const [buttonState, setButtonState] = useState(1);
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
@@ -52,31 +54,44 @@ const PurchaseHistoryScreen = ({ navigation }) => {
             }}
           >
             <TouchableOpacity
+              onPress={() => setButtonState(1)}
               style={{
                 flex: 1,
                 alignItems: "center",
                 justifyContent: "center",
-                backgroundColor: "#FCC014",
+                backgroundColor: buttonState === 1 ? "#FCC014" : null,
                 borderRadius: 5,
-              }}
-            >
-              <Text
-                style={{ fontSize: 16, fontFamily: "EuclidCircularB-Bold" }}
-              >
-                En cours
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "center",
               }}
             >
               <Text
                 style={{
                   fontSize: 16,
-                  fontFamily: "EuclidCircularB-Regular",
+                  fontFamily:
+                    buttonState === 1
+                      ? "EuclidCircularB-Bold"
+                      : "EuclidCircularB-Regular",
+                }}
+              >
+                En cours
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => setButtonState(2)}
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: 5,
+                backgroundColor: buttonState === 2 ? "#FCC014" : null,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontFamily:
+                    buttonState === 2
+                      ? "EuclidCircularB-Bold"
+                      : "EuclidCircularB-Regular",
                   color: "rgba(0, 0, 0, 0.7)",
                 }}
               >
@@ -84,14 +99,19 @@ const PurchaseHistoryScreen = ({ navigation }) => {
               </Text>
             </TouchableOpacity>
           </View>
-          <PurchaseHistoryListBox />
-          <Btn />
-          <PurchaseHistoryListBox />
-          <Btn />
-          <PurchaseHistoryListBox />
-          <Btn />
-          <PurchaseHistoryListBox />
-          <Btn />
+          {buttonState === 1 ? (
+            <>
+              <PurchaseHistoryListBox />
+              <PurchaseHistoryListBox />
+              <PurchaseHistoryListBox />
+              <PurchaseHistoryListBox />
+            </>
+          ) : (
+            <>
+              <PurchaseHistoryListBoxRight />
+              <PurchaseHistoryListBoxRight />
+            </>
+          )}
           <View style={{ width: "100%", height: 80 }} />
         </View>
       </ScrollView>
@@ -126,40 +146,3 @@ const styles = StyleSheet.create({
     paddingVertical: 25,
   },
 });
-
-const Btn = () => {
-  return (
-    <>
-      <TouchableOpacity
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "rgba(0, 136, 151, 0.64)",
-          height: 44,
-          paddingHorizontal: 15,
-          borderRadius: 5,
-        }}
-      >
-        <EyeSvg />
-        <Text
-          style={{
-            color: "white",
-            fontSize: 16,
-            fontFamily: "EuclidCircularB-Regular",
-          }}
-        >
-          Voir la commande
-        </Text>
-      </TouchableOpacity>
-      <View
-        style={{
-          width: "100%",
-          height: 1,
-          backgroundColor: "rgba(0, 136, 151, 0.27)",
-          marginTop: 25,
-        }}
-      />
-    </>
-  );
-};

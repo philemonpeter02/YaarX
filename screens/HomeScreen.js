@@ -7,7 +7,7 @@ import {
   FlatList,
   ScrollView,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   CartSvg,
@@ -18,32 +18,56 @@ import {
 } from "../components/Svg";
 import CircleComponent from "../components/CircleComponent";
 import ProductCardSqaure from "../components/ProductCardSqaure";
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from "react-native-popup-menu";
+import Icon from "react-native-vector-icons/Entypo";
 
 const HomeScreen = ({ navigation }) => {
+  const [filter, setFilter] = useState("Les plus demandés");
+  const [filterOpen, setFilterOpen] = useState(false);
   const numColumns = 2;
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <View style={styles.topContainer}>
-          <View style={styles.searchBox}>
-            <TextInput placeholder="Chercher un produit" style={styles.input} />
-            <MagnifySvg />
-          </View>
-          <TouchableOpacity
-            style={styles.iconButton}
-            onPress={() => navigation.navigate("Checkout")}
-          >
-            <CartSvg />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.iconButton}>
-            <HeartSvg />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.iconButton}>
-            <EditPenSvg />
-          </TouchableOpacity>
+      <View style={styles.topContainer}>
+        <View style={styles.searchBox}>
+          <TextInput
+            placeholder="Quel produit cherchez-vous ?"
+            style={styles.input}
+          />
+          <MagnifySvg />
         </View>
-        <View style={styles.bottomContainer}>
+        <TouchableOpacity
+          style={styles.iconButton}
+          onPress={() => navigation.navigate("Checkout")}
+        >
+          <CartSvg />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.iconButton}>
+          <HeartSvg />
+        </TouchableOpacity>
+        {/* <TouchableOpacity style={styles.iconButton}>
+          <EditPenSvg />
+        </TouchableOpacity> */}
+      </View>
+      <View style={styles.bottomContainer}>
+        <ScrollView
+          style={{
+            width: "100%",
+            borderTopLeftRadius: 10,
+            borderTopRightRadius: 10,
+          }}
+          contentContainerStyle={{
+            flexGrow: 1,
+            borderTopLeftRadius: 10,
+            borderTopRightRadius: 10,
+            overflow: "hidden",
+          }}
+        >
           <View
             style={{
               backgroundColor: "#fff",
@@ -83,16 +107,6 @@ const HomeScreen = ({ navigation }) => {
               >
                 Nos catégories
               </Text>
-              <TouchableOpacity>
-                <Text
-                  style={[
-                    styles.text,
-                    { color: "#35B8C8", fontStyle: "italic" },
-                  ]}
-                >
-                  Voir tout
-                </Text>
-              </TouchableOpacity>
             </View>
             <View
               style={{
@@ -102,10 +116,10 @@ const HomeScreen = ({ navigation }) => {
                 paddingVertical: 15,
               }}
             >
+              <CircleComponent title="Catégories" svg={true} />
               <CircleComponent title="Boissons" />
-              <CircleComponent title="Boissons" />
-              <CircleComponent title="Boissons" />
-              <CircleComponent title="Boissons" />
+              <CircleComponent title="Café & Thé" />
+              <CircleComponent title="Cuisine" />
             </View>
           </View>
           <View
@@ -136,18 +150,111 @@ const HomeScreen = ({ navigation }) => {
                   },
                 ]}
               >
-                Nos catégories
+                Nos produits
               </Text>
-              <TouchableOpacity>
-                <Text
-                  style={[
-                    styles.text,
-                    { color: "#35B8C8", fontStyle: "italic" },
-                  ]}
+
+              <Menu>
+                <MenuTrigger
+                  style={{ flexDirection: "row", alignItems: "center" }}
                 >
-                  Voir tout
-                </Text>
-              </TouchableOpacity>
+                  <Text
+                    style={[
+                      styles.text,
+                      {
+                        color: "#000",
+                        fontSize: 10,
+                        textTransform: "uppercase",
+                      },
+                    ]}
+                  >
+                    Trier par:{" "}
+                    <Text
+                      style={{
+                        color: "#35B8C8",
+                        textTransform: "uppercase",
+                        fontSize: 11,
+                      }}
+                    >
+                      {filter}
+                    </Text>
+                  </Text>
+                  <Icon name="chevron-small-down" color="#35B8C8" size={12} />
+                </MenuTrigger>
+                <MenuOptions>
+                  <MenuOption
+                    onSelect={() => {
+                      setFilter("Les plus demandés ");
+                    }}
+                  >
+                    <Text
+                      style={[
+                        styles.text,
+                        {
+                          color:
+                            filter === "Les plus demandés" ? "#35B8C8" : "#000",
+                          fontSize: 10,
+                        },
+                      ]}
+                    >
+                      Les plus demandés
+                    </Text>
+                  </MenuOption>
+                  <MenuOption
+                    onSelect={() => {
+                      setFilter("Nouvel arrivage");
+                    }}
+                  >
+                    <Text
+                      style={[
+                        styles.text,
+                        {
+                          color:
+                            filter === "Nouvel arrivage" ? "#35B8C8" : "#000",
+                          fontSize: 10,
+                        },
+                      ]}
+                    >
+                      Nouvel arrivage
+                    </Text>
+                  </MenuOption>
+                  <MenuOption
+                    onSelect={() => {
+                      setFilter("Prix décroissants");
+                    }}
+                  >
+                    <Text
+                      style={[
+                        styles.text,
+                        {
+                          color:
+                            filter === "Prix décroissants" ? "#35B8C8" : "#000",
+                          fontSize: 10,
+                        },
+                      ]}
+                    >
+                      Prix décroissants
+                    </Text>
+                  </MenuOption>
+                  <MenuOption
+                    onSelect={() => {
+                      setFilter("Prix croissants");
+                    }}
+                  >
+                    <Text
+                      style={[
+                        styles.text,
+                        {
+                          color:
+                            filter === "Prix croissants" ? "#35B8C8" : "#000",
+                          fontSize: 10,
+                        },
+                      ]}
+                    >
+                      Prix croissants
+                    </Text>
+                  </MenuOption>
+                </MenuOptions>
+              </Menu>
             </View>
             <View
               style={{
@@ -175,8 +282,8 @@ const HomeScreen = ({ navigation }) => {
             </View>
             <View style={{ width: "100%", height: 80 }} />
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };

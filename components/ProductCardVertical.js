@@ -1,10 +1,17 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { HeartGreySvg, MinuSvg, PlusSvg } from "./Svg";
+import HeartIcon from "react-native-vector-icons/Ionicons";
 
-const ProductCardVertical = ({ title, subtitle, price }) => {
+const ProductCardVertical = ({
+  title,
+  subtitle,
+  price,
+  backgroundColor = "#F5F5F6",
+  heartIcon,
+}) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: backgroundColor }]}>
       <View
         style={{
           flexDirection: "column",
@@ -13,11 +20,27 @@ const ProductCardVertical = ({ title, subtitle, price }) => {
           //   paddingVertical: 10,
         }}
       >
+        {heartIcon && (
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "flex-end",
+              width: "100%",
+              position: "absolute",
+              top: 0,
+            }}
+          >
+            <TouchableOpacity style={{ marginRight: 8, marginTop: -5 }}>
+              <HeartIcon name="heart" size={20} color="#FCC014" />
+            </TouchableOpacity>
+          </View>
+        )}
         <Image
           source={require("../assets/images/productVertical.png")}
           style={{ width: 100 }}
           resizeMode="contain"
         />
+
         <View
           style={{
             paddingTop: 0,
@@ -70,13 +93,15 @@ const ProductCardVertical = ({ title, subtitle, price }) => {
           alignItems: "center",
           justifyContent: "space-between",
           marginTop: 5,
+          backgroundColor: backgroundColor === "#fff" ? "#F5F5F6" : "#fff",
+          borderRadius: 5,
         }}
       >
         <TouchableOpacity
           style={{
             backgroundColor: "#fff",
             width: 40,
-            height: 30,
+            height: 28,
             alignItems: "center",
             justifyContent: "center",
             borderRadius: 5,
@@ -112,7 +137,6 @@ const styles = StyleSheet.create({
   container: {
     height: 245,
     width: 155,
-    backgroundColor: "#F5F5F6",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",

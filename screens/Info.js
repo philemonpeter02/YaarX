@@ -5,11 +5,13 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SvgBackArrow } from "../components/Svg";
-
+import Icon from "react-native-vector-icons/Feather";
 const Info = ({ navigation }) => {
+  const [visible, setVisible] = useState(true);
+  const [visibleConfirm, setVisibleConfirm] = useState(true);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topContainer}>
@@ -29,16 +31,67 @@ const Info = ({ navigation }) => {
       </View>
       <View style={styles.bottomContainer}>
         <Text style={styles.text}>Votre nom</Text>
-        <TextInput placeholder="Ex : Kaboré" style={styles.input} />
-        <Text style={styles.text}>Votre prénom</Text>
-        <TextInput placeholder="Ex : Jules" style={styles.input} />
-        <Text style={styles.text}>Créer un mot de passe</Text>
-        <TextInput placeholder="Votre mot de passe" style={styles.input} />
-        <Text style={styles.text}>Confirmer votre mot de passe </Text>
         <TextInput
-          placeholder="Veuillez entrer votre nom ici"
+          placeholder="Ex : Kaboré"
           style={styles.input}
+          placeholderText="rgba(0, 0, 0, 0.6)"
         />
+        <Text style={styles.text}>Votre prénom</Text>
+        <TextInput
+          placeholder="Ex : Jules"
+          style={styles.input}
+          placeholderText="rgba(0, 0, 0, 0.6)"
+        />
+        <Text style={styles.text}>Créer un mot de passe</Text>
+        <View
+          style={[
+            styles.input,
+            {
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+            },
+          ]}
+        >
+          <TextInput
+            placeholder="Votre mot de passe"
+            placeholderText="rgba(0, 0, 0, 0.6)"
+            secureTextEntry={visible}
+          />
+          <TouchableOpacity onPress={() => setVisible(!visible)}>
+            <Icon
+              name={visible ? "eye-off" : "eye"}
+              size={20}
+              color="rgba(0, 0, 0, 0.6)"
+            />
+          </TouchableOpacity>
+        </View>
+
+        <Text style={styles.text}>Confirmer votre mot de passe </Text>
+        <View
+          style={[
+            styles.input,
+            {
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+            },
+          ]}
+        >
+          <TextInput
+            placeholder="Veuillez entrer votre nom ici"
+            placeholderText="rgba(0, 0, 0, 0.6)"
+            secureTextEntry={visibleConfirm}
+          />
+          <TouchableOpacity onPress={() => setVisibleConfirm(!visibleConfirm)}>
+            <Icon
+              name={visibleConfirm ? "eye-off" : "eye"}
+              size={20}
+              color="rgba(0, 0, 0, 0.6)"
+            />
+          </TouchableOpacity>
+        </View>
+
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("CategorySelection")}
@@ -46,8 +99,8 @@ const Info = ({ navigation }) => {
           <Text
             style={{
               fontSize: 14,
-              fontWeight: "bold",
               fontFamily: "EuclidCircularB-Regular",
+              color: "rgba(0, 0, 0, 0.5)",
             }}
           >
             Suivant
@@ -99,7 +152,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F2F9FA",
     width: "100%",
     borderRadius: 5,
-    paddingLeft: 15,
+    paddingHorizontal: 15,
     fontFamily: "EuclidCircularB-Regular",
   },
   text: {

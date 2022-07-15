@@ -20,6 +20,7 @@ const CategorySelection = ({ navigation }) => {
             fontFamily: "EuclidCircularB-Regular",
             fontSize: 12,
             textAlign: "center",
+            color: "rgba(0, 0, 0, 0.6)",
           }}
         >
           {item.title}
@@ -46,7 +47,7 @@ const CategorySelection = ({ navigation }) => {
       </View>
       <View style={styles.bottomContainer}>
         <Text style={styles.text}>Nom de votre boutique (optionnel)</Text>
-        <TextInput placeholder="Ex : Kaboré" style={styles.input} />
+        <TextInput style={styles.input} />
 
         <Text style={styles.text}>Type de votre boutique</Text>
         <FlatList
@@ -60,12 +61,12 @@ const CategorySelection = ({ navigation }) => {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("Tabs")}
+          onPress={() => navigation.navigate("RegistrationSuccess")}
         >
           <Text
             style={{
               fontSize: 14,
-              fontWeight: "bold",
+              color: "rgba(0, 0, 0, 0.5)",
               fontFamily: "EuclidCircularB-Regular",
             }}
           >
@@ -151,32 +152,14 @@ const dataSource = [
     id: 2,
     title: "Supermarché",
   },
+
   {
     id: 3,
-    title: "Pharmacie",
-  },
-  {
-    id: 4,
     title: "Restaurant",
   },
+
   {
-    id: 5,
-    title: "Bureautique",
-  },
-  {
-    id: 6,
-    title: "Quincaillerie",
-  },
-  {
-    id: 7,
-    title: "Habillement",
-  },
-  {
-    id: 8,
-    title: "Meubles",
-  },
-  {
-    id: 9,
+    id: 4,
     title: "Autres",
   },
 ];

@@ -12,9 +12,24 @@ import PromosScreen from "./PromosScreen";
 import Checkout from "./Checkout";
 import PaymentDetails from "./PaymentDetails";
 import PaymentSuccessScreen from "./PaymentSuccessScreen";
+import RegistrationSuccessScreen from "./RegistrationSuccessScreen";
 import PurchaseHistoryScreen from "./PurchaseHistoryScreen";
+import CategoriesScreen from "./CategoriesScreen";
+import CategoryDetail from "./CategoryDetail";
+import MarquesScreen from "./MarquesScreen";
+import MarquesDetail from "./MarquesDetail";
+import SupportScreen from "./SupportScreen";
+import NotificationsScreen from "./NotificationsScreen";
+import EditProfile from "./EditProfile";
+import FavouritesScreen from "./FavouritesScreen";
 export {
   SplashScreen,
+  NotificationsScreen,
+  FavouritesScreen,
+  EditProfile,
+  MarquesDetail,
+  SupportScreen,
+  MarquesScreen,
   PhoneVerification,
   OtpVerification,
   Info,
@@ -29,4 +44,7 @@ export {
   PaymentDetails,
   PaymentSuccessScreen,
   PurchaseHistoryScreen,
+  RegistrationSuccessScreen,
+  CategoriesScreen,
+  CategoryDetail,
 };

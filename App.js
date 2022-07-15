@@ -4,6 +4,8 @@ import RootStack from "./navigation/RootStack";
 import AppLoading from "expo-app-loading";
 import { StatusBar } from "react-native";
 import { useFonts } from "expo-font";
+import { MenuProvider } from "react-native-popup-menu";
+import { RootSiblingParent } from "react-native-root-siblings";
 import { LogBox } from "react-native";
 LogBox.ignoreAllLogs();
 
@@ -20,8 +22,12 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <PaperProvider>
-        <RootStack />
-        <StatusBar backgroundColor="#008897" barStyle="light-content" />
+        <MenuProvider>
+          <RootSiblingParent>
+            <RootStack />
+            <StatusBar backgroundColor="#008897" barStyle="light-content" />
+          </RootSiblingParent>
+        </MenuProvider>
       </PaperProvider>
     </SafeAreaProvider>
   );

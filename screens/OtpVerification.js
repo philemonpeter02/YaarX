@@ -27,7 +27,6 @@ const OtpVerification = ({ navigation }) => {
           style={{
             textAlign: "center",
             fontSize: 14,
-            width: "70%",
             fontFamily: "EuclidCircularB-Regular",
           }}
         >
@@ -42,8 +41,8 @@ const OtpVerification = ({ navigation }) => {
               fontFamily: "EuclidCircularB-Regular",
               backgroundColor: "#F2F9FA",
               textAlign: "center",
-              marginRight: 5,
-              marginLeft: 5,
+              marginRight: 15,
+              marginLeft: 15,
               height: 50,
               width: 40,
               borderRadius: 5,
@@ -53,15 +52,61 @@ const OtpVerification = ({ navigation }) => {
             numberOfInputs={4}
           />
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate("Info")}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Info")}
+          style={{
+            alignSelf: "flex-end",
+            marginRight: 10,
+            marginVertical: 2.5,
+          }}
+        >
           <Text
             style={{
-              color: "#FCC014",
+              color: "background: rgba(140, 140, 140, 1)",
+              fontSize: 14,
               textDecorationLine: "underline",
               fontFamily: "EuclidCircularB-Regular",
             }}
           >
-            Vous n’avez pas reçu de mode ?
+            Vous n’avez pas reçu de code ?
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Info")}
+          style={{
+            alignSelf: "flex-end",
+            marginRight: 10,
+            marginVertical: 2.5,
+          }}
+        >
+          <Text
+            style={{
+              color: "#FCC014",
+              textDecorationLine: "underline",
+              fontSize: 12,
+              fontFamily: "EuclidCircularB-Regular",
+            }}
+          >
+            Renvoyer-moi le code !
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Info")}
+          style={{
+            alignSelf: "flex-end",
+            marginRight: 10,
+            marginVertical: 2.5,
+          }}
+        >
+          <Text
+            style={{
+              color: "#FCC014",
+              textDecorationLine: "underline",
+              fontSize: 12,
+              fontFamily: "EuclidCircularB-Regular",
+            }}
+          >
+            Je souhaite changer de numéro.
           </Text>
         </TouchableOpacity>
       </View>
@@ -87,6 +132,7 @@ const styles = StyleSheet.create({
   bottomContainer: {
     height: "90%",
     width: "100%",
+    paddingHorizontal: 35,
     backgroundColor: "#fff",
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,

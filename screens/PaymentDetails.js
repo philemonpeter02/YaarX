@@ -330,6 +330,7 @@ const PaymentDetails = ({ navigation }) => {
                 backgroundColor: "#FCC014",
                 borderRadius: 5,
                 paddingVertical: 10,
+                height: 44,
               }}
               onPress={() => navigation.navigate("PaymentSuccess")}
             >

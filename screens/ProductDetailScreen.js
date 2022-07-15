@@ -230,7 +230,6 @@ const ProductDetailScreen = ({ navigation }) => {
               style={{
                 fontSize: 14,
                 fontFamily: "EuclidCircularB-Regular",
-                marginBottom: 5,
                 color: "white",
               }}
             >
@@ -264,7 +263,6 @@ const ProductDetailScreen = ({ navigation }) => {
                 marginLeft: 10,
                 fontSize: 14,
                 fontFamily: "EuclidCircularB-Medium",
-                marginBottom: 5,
               }}
             >
               Ajouter au panier

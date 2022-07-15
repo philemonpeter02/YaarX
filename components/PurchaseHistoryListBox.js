@@ -1,5 +1,6 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
+import { EyeSvg } from "./Svg";
 
 const PurchaseHistoryListBox = () => {
   return (
@@ -90,6 +91,7 @@ const PurchaseHistoryListBox = () => {
           350 000 F CFA
         </Text>
       </View>
+      <Btn />
     </View>
   );
 };
@@ -99,13 +101,52 @@ export default PurchaseHistoryListBox;
 const styles = StyleSheet.create({
   box: {
     width: "100%",
-    paddingVertical: 15,
+    paddingVertical: 10,
     paddingHorizontal: 35,
     backgroundColor: "#FFFFFF",
     flexDirection: "column",
     alignItems: "center",
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-    marginVertical: 20,
+    marginVertical: 10,
   },
 });
+
+const Btn = () => {
+  return (
+    <>
+      <TouchableOpacity
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "rgba(0, 136, 151, 0.64)",
+          height: 44,
+          width: "100%",
+          paddingHorizontal: 15,
+          borderRadius: 5,
+          marginTop: 15,
+        }}
+      >
+        <EyeSvg />
+        <Text
+          style={{
+            color: "white",
+            fontSize: 16,
+            fontFamily: "EuclidCircularB-Regular",
+          }}
+        >
+          Voir la commande
+        </Text>
+      </TouchableOpacity>
+      <View
+        style={{
+          width: "100%",
+          height: 1,
+          backgroundColor: "rgba(0, 136, 151, 0.27)",
+          marginTop: 25,
+        }}
+      />
+    </>
+  );
+};

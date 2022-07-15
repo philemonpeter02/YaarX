@@ -1,21 +1,38 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Platform,
+  Linking,
+} from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
+  CategoriesSvg,
+  CategoriesSvgFilled,
   HomeSvg,
   HomeSvgOutline,
   MessagesOutlineSvg,
   ProfileOutlineSvg,
   PromoOutlineSvg,
+  SvgMarques,
+  SvgMarquesFilled,
   SvgPhone,
 } from "../components/Svg";
 import {
   CallerScreen,
+  CategoriesScreen,
   MessagesScreen,
   ProfileScreen,
   PromosScreen,
 } from "../screens";
 import HomeStackScreen from "./HomeStack";
+import call from "react-native-phone-call";
+import CategoriesStackScreen from "./CategoriesStack";
+import MarquesStackScreen from "./MarquesStack";
+import ProfileStackScreen from "./ProfileStack";
+
 const TabNavigator = () => {
   const Tab = createBottomTabNavigator();
 
@@ -28,10 +45,10 @@ const TabNavigator = () => {
       tabBar={(props) => <MyTabBar {...props} />}
     >
       <Tab.Screen name="Home" component={HomeStackScreen} />
-      <Tab.Screen name="Promos" component={PromosScreen} />
+      <Tab.Screen name="Categories" component={CategoriesStackScreen} />
       <Tab.Screen name="Caller" component={CallerScreen} />
-      <Tab.Screen name="Messages" component={MessagesScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="Marques" component={MarquesStackScreen} />
+      <Tab.Screen name="Profile" component={ProfileStackScreen} />
     </Tab.Navigator>
   );
 };
@@ -70,6 +87,20 @@ const MyTabBar = ({ state, descriptors, navigation }) => {
             navigation.navigate(route.name);
           }
         };
+        const triggerCall = () => {
+          // // Check for perfect 10 digit length
+          // if (inputValue.length != 10) {
+          //   alert('Please insert correct contact number');
+          //   return;
+          // }
+
+          const args = {
+            number: "12345678910",
+            prompt: true,
+          };
+          // Make a call
+          call(args).catch(console.error);
+        };
         return (
           <TouchableOpacity
             onPress={() => onPress()}
@@ -84,19 +115,19 @@ const MyTabBar = ({ state, descriptors, navigation }) => {
             )}
             {index === 1 && (
               <View style={styles.icon}>
-                {isFocused ? <PromoOutlineSvg /> : <PromoOutlineSvg />}
-                <Text style={styles.text}>Promos</Text>
+                {isFocused ? <CategoriesSvgFilled /> : <CategoriesSvg />}
+                <Text style={styles.text}>Catégories</Text>
               </View>
             )}
             {index === 2 && (
-              <View style={styles.icon}>
+              <TouchableOpacity onPress={triggerCall} style={styles.icon}>
                 <SvgPhone />
-              </View>
+              </TouchableOpacity>
             )}
             {index === 3 && (
               <View style={styles.icon}>
-                {isFocused ? <MessagesOutlineSvg /> : <MessagesOutlineSvg />}
-                <Text style={styles.text}>Messages</Text>
+                {isFocused ? <SvgMarquesFilled /> : <SvgMarques />}
+                <Text style={styles.text}>Marques</Text>
               </View>
             )}
             {index === 4 && (

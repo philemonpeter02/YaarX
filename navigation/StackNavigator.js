@@ -5,6 +5,7 @@ import {
   Info,
   OtpVerification,
   PhoneVerification,
+  RegistrationSuccessScreen,
   SplashScreen,
 } from "../screens";
 import TabNavigator from "./TabNavigator";
@@ -24,6 +25,10 @@ const StackNavigator = () => {
       <Stack.Screen name="Otp" component={OtpVerification} />
       <Stack.Screen name="Info" component={Info} />
       <Stack.Screen name="CategorySelection" component={CategorySelection} />
+      <Stack.Screen
+        name="RegistrationSuccess"
+        component={RegistrationSuccessScreen}
+      />
       <Stack.Screen name="Tabs" component={TabNavigator} />
     </Stack.Navigator>
   );

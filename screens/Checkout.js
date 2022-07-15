@@ -41,51 +41,32 @@ const Checkout = ({ navigation }) => {
           <CheckoutCard />
           <View
             style={{
-              flexDirection: "row",
+              flexDirection: "column",
               paddingHorizontal: 25,
               paddingVertical: 15,
             }}
           >
-            <TouchableOpacity
+            <Text
               style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "center",
-                marginRight: 10,
-                backgroundColor: "rgba(0,136,151,0.6)",
-                borderRadius: 5,
-                paddingVertical: 5,
+                fontSize: 16,
+                fontFamily: "EuclidCircularB-Medium",
+                color: "#35B8C8",
+                alignSelf: "center",
+                marginBottom: 15,
               }}
             >
-              <Text
-                style={{
-                  fontSize: 12,
-                  fontFamily: "EuclidCircularB-Regular",
-                  color: "#fff",
-                }}
-              >
-                Total
-              </Text>
-              <Text
-                style={{
-                  fontSize: 14,
-                  fontFamily: "EuclidCircularB-Medium",
-                  color: "#fff",
-                }}
-              >
-                1 000 000 F CFA
-              </Text>
-            </TouchableOpacity>
+              Total 1 000 000 F CFA
+            </Text>
             <TouchableOpacity
               onPress={() => navigation.navigate("PaymentDetails")}
               style={{
                 flex: 1,
                 alignItems: "center",
                 justifyContent: "center",
-                marginLeft: 10,
                 backgroundColor: "#FCC014",
                 borderRadius: 5,
                 paddingVertical: 5,
+                height: 44,
               }}
             >
               <Text
